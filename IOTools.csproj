@@ -63,6 +63,7 @@
     <Compile Include="Algorithms\XOR32.cs" />
     <Compile Include="Algorithms\XOR64.cs" />
     <Compile Include="Algorithms\XOR8.cs" />
+    <Compile Include="BitReader.cs" />
     <Compile Include="Compression\Deflate.cs" />
     <Compile Include="Compression\GZip.cs" />
     <Compile Include="Compression\Mode.cs" />
