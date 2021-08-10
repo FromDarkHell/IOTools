@@ -26,7 +26,7 @@ namespace IOTools {
         private byte[] _Buffer;
 
         public override string ToString() {
-            return Converters.BytesToBitString(_Buffer);
+            return Converters.BytesToBitString(GetBuffer());
         }
 
 
@@ -46,7 +46,7 @@ namespace IOTools {
             Array.Resize(ref this._Buffer, newSize);
             if (newSize > start) {
                 for (int i = start; i < this._Buffer.Length; i++) {
-                    this._Buffer[i] = 0xFF;
+                    this._Buffer[i] = 0x0;
                 }
             }
         }
