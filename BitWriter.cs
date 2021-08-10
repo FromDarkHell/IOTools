@@ -25,6 +25,11 @@ namespace IOTools {
     public class BitWriter {
         private byte[] _Buffer;
 
+        public override string ToString() {
+            return Converters.BytesToBitString(_Buffer);
+        }
+
+
         public int AllocatedLength {
             get { return this._Buffer.Length * 8; }
         }

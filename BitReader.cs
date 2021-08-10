@@ -20,8 +20,7 @@ namespace IOTools {
             stream.Seek(originalPosition);
 
             // Convert to a binary string
-            string byteStr = string.Join(" ", arr.Select(x => Convert.ToString(x, 2).PadLeft(8, '0')));
-            return byteStr;
+            return Converters.BytesToBitString(arr);
         }
 
         public BitReader(byte[] buffer) {
