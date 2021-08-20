@@ -1,13 +1,13 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.CompilerServices;
-using Microsoft.VisualBasic.Devices;
-namespace IOTools
-{
-	public class Functions
+
+namespace IOTools {
+    public class Functions
 	{
 		public static void FillBuffer([In] [Out] ref byte[] Buffer, ulong Index, byte FillWith = 0)
 		{
@@ -86,10 +86,6 @@ namespace IOTools
 					{
 						return;
 					}
-					if (decimal.Compare(new decimal(Functions.AvailableMemory()), new decimal(Stream.Length)) <= 0)
-					{
-						throw new OutOfMemoryException("Not enough memory available to copy the stream to an array");
-					}
 					Array.Resize<byte>(ref OutBuffer, (int)Stream.Length);
 					BinaryReader binaryReader = new BinaryReader(Stream);
 					long position = Stream.Position;
@@ -140,10 +136,6 @@ namespace IOTools
 			}
 			while (ByteCount > 1024.0);
 			return byteExtensions[divAmount];
-		}
-		public static ulong AvailableMemory()
-		{
-			return checked(new ComputerInfo().AvailablePhysicalMemory + new ComputerInfo().AvailableVirtualMemory);
 		}
 		public static object PowMin(int Bits, bool Signed = true)
 		{

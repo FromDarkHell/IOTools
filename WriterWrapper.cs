@@ -166,10 +166,6 @@ namespace IOTools
 					{
 						return;
 					}
-					if (decimal.Compare(new decimal(Functions.AvailableMemory()), new decimal(LengthToEnd)) < 0 || decimal.Compare(new decimal(Functions.AvailableMemory()), new decimal(unchecked((long)Length) + Length)) < 0)
-					{
-						throw new OutOfMemoryException("Amount of memory requested is unavailable....");
-					}
 					if (StreamType != StreamType.FileStream || OpenStream.CanRead)
 					{
 						if (OpenStream.CanWrite)
@@ -217,10 +213,6 @@ namespace IOTools
 					if (LengthToEnd - unchecked((long)Length) < 0L)
 					{
 						throw new DataException("Length is longer than the number of bytes left to end of stream. Not enough bytes to delete");
-					}
-					if (decimal.Compare(new decimal(Functions.AvailableMemory()), new decimal(Length + unchecked((long)Length))) < 0)
-					{
-						throw new OutOfMemoryException("There is not enough memory availible to the system to delete specified length of bytes");
 					}
 					if (StreamType != StreamType.FileStream || OpenStream.CanRead)
 					{

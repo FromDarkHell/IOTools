@@ -627,10 +627,6 @@ namespace IOTools
 					{
 						throw new DataException("Length is longer than the number of bytes left to end of stream. Not enough bytes to delete");
 					}
-					if (decimal.Compare(new decimal(Functions.AvailableMemory()), new decimal(Length + unchecked((long)Length))) < 0)
-					{
-						throw new OutOfMemoryException("There is not enough memory availible to the system to delete specified length of bytes");
-					}
 					long position = Position;
 					Position = 0L;
 					Flush();
