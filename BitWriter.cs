@@ -20,9 +20,12 @@
  *    distribution.
  */
 using System;
+using System.Linq;
 
 namespace IOTools {
     public class BitWriter {
+        public static readonly ulong[] MaxValueForBitCount = Enumerable.Range(0, 65).Select(n => (1UL << n) - 1).ToArray();
+
         private byte[] _Buffer;
 
         public override string ToString() {
@@ -82,6 +85,9 @@ namespace IOTools {
             if (bits < 0 || bits > 32) {
                 throw new ArgumentOutOfRangeException(nameof(bits));
             }
+            if (value > MaxValueForBitCount[bits]) {
+                throw new ArgumentOutOfRangeException(nameof(value));
+            }
 
             while (bits > 0) {
                 if (this.Position >= this.AllocatedLength) {
@@ -107,6 +113,9 @@ namespace IOTools {
         public void WriteUInt64(ulong value, int bits) {
             if (bits < 0 || bits > 64) {
                 throw new ArgumentOutOfRangeException(nameof(bits));
+            }
+            if (value > MaxValueForBitCount[bits]) {
+                throw new ArgumentOutOfRangeException(nameof(value));
             }
 
             while (bits > 0) {
